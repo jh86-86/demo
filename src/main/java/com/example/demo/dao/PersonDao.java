@@ -1,5 +1,7 @@
 package com.example.demo.dao;
 import com.example.demo.model.Person;
+
+import java.util.List;
 import java.util.UUID;
 
 
@@ -11,4 +13,5 @@ public interface PersonDao {
         return insertPerson(id, person);
     }
 
+    List<Person> selectAllPeople(); //contract for returning all people
 }
