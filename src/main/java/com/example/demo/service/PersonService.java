@@ -16,7 +16,7 @@ public class PersonService {
     private final PersonDao personDao; //refernce to it, dependecy injection
 
     @Autowired //injects into actual constructor
-    public PersonService(@Qualifier("FakeDao") PersonDao personDao) { //bean us connected to fake db
+    public PersonService(@Qualifier("postgres") PersonDao personDao) { //bean us connected to fake db
         this.personDao = personDao;
     }
 
