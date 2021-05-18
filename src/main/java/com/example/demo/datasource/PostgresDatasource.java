@@ -15,7 +15,7 @@ public class PostgresDatasource {
     public HikariDataSource hikariDataSource(){ //instantiaing this hikari source as a bean
         return DataSourceBuilder
                 .create()
-                .type(HikariDataSource.class)
+                .type(HikariDataSource.class) //Hikari is the recommend datasource for springboot as it is reliable and fast
                 .build();
     }
 }
