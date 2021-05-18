@@ -4,6 +4,7 @@ import com.example.demo.dao.PersonDao;
 import com.example.demo.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,8 +16,12 @@ public class PersonService {
 
     private final PersonDao personDao; //refernce to it, dependecy injection
 
+
+
+
+
     @Autowired //injects into actual constructor
-    public PersonService(@Qualifier("FakeDao") PersonDao personDao) { //bean us connected to fake db
+    public PersonService(@Qualifier("postgres") PersonDao personDao) { //bean us connected to fake db
         this.personDao = personDao;
     }
 
