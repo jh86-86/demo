@@ -5,8 +5,9 @@ import com.example.demo.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.UUID;
 
-@RequestMapping("api/v1/person")  //this is the path for post request//endpoint
+@RequestMapping("api/v1/person")  //this is the path for request//endpoint
 @RestController
 public class PersonController {
 
@@ -26,4 +27,21 @@ public class PersonController {
     public List<Person> getAllPeople(){
         return personService.getAllPeople();
     }
+
+    @GetMapping(path= "{id}") //allows me to have forward slash for the id
+    public Person getPersonId(@PathVariable("id") UUID id){  //turns id into a UUID
+        return personService.getPersonById(id)
+                .orElse(null); //could have custom message here could add 404
+    }
+
+    @DeleteMapping(path="{id}") //pass down to service
+    public void deletePersonById(@PathVariable("id")UUID id){
+        personService.deletePerson(id);
+    }
+
+    @PutMapping(path="{id}")
+    public void updatePerson(@PathVariable("id") UUID id, @RequestBody Person personToUpdate){ //takes a person from the request bdy
+        personService.updatePerson(id, personToUpdate);
+    }
+
 }

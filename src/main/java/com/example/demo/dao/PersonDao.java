@@ -2,6 +2,7 @@ package com.example.demo.dao;
 import com.example.demo.model.Person;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 
@@ -14,4 +15,10 @@ public interface PersonDao {
     }
 
     List<Person> selectAllPeople(); //contract for returning all people
+
+    Optional<Person> selectPersonById(UUID id); //get by id
+
+    int deletePersonById(UUID id);
+
+    int updatePersonById(UUID id, Person person);
 }
