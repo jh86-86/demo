@@ -13,7 +13,7 @@ import static org.apache.logging.log4j.ThreadContext.isEmpty;
 
 @Repository("FakeDao") //this class is served as a respository
 public class FakePersonDataAccessService implements PersonDao {
-    private static List<Person> DB= new ArrayList<>();
+    private static final List<Person> DB= new ArrayList<>();
 
     @Override
     public int insertPerson(UUID id, Person person){
