@@ -35,12 +35,12 @@ public class PersonDataAccessService implements PersonDao {
     @Override
     public List<Person> selectAllPeople() {
         final String sql = "SELECT id, name FROM person";
-       List<Person> people= jdbcTemplate.query(sql, (resultSet, i) -> {  //Rowmapper lambda has access to result set and index
+            return jdbcTemplate.query(sql, (resultSet, i) -> {  //Rowmapper lambda has access to result set and index
             UUID id = UUID.fromString(resultSet.getString("id")); //this will convert the string here to UUID
             String name = resultSet.getString("name");  //gets the name
             return new Person(id, name);
         });
-        return people;
+
 //        return List.of(new Person(UUID.randomUUID(), "From Postgres DB"));    my fake list
     }
 
