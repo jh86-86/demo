@@ -73,7 +73,8 @@ public class LessonDataAccessService implements LessonDao {
 
     @Override
     public int updateLessonById(UUID id, Lesson lesson) {
-        return 0;
+        final String sql= "UPDATE lesson SET name = ?, youtubeLink = ?, tagline = ? WHERE id = ?";
+        return jdbcTemplate.update(sql, lesson.getName(), lesson.getYoutubeLink(), lesson.getTagLine(), id);
     }
 
 }
