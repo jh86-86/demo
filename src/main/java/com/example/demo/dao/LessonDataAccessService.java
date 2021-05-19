@@ -36,14 +36,14 @@ public class LessonDataAccessService implements LessonDao {
     @Override
     public List<Lesson> selectAllLessons() {
         final String sql = "SELECT id, name, youtubeLink, tagline FROM Lesson";
-        List<Lesson> lessons= jdbcTemplate.query(sql, (resultSet, i) -> {  //Rowmapper lambda has access to result set and index
+       return jdbcTemplate.query(sql, (resultSet, i) -> {  //Rowmapper lambda has access to result set and index
             UUID id = UUID.fromString(resultSet.getString("id")); //this will convert the string here to UUID
             String name = resultSet.getString("name");
             String youtubeLink = resultSet.getString("youtubeLink");
             String tagLine = resultSet.getString("tagline");
             return new Lesson(id, name, youtubeLink, tagLine);
         });
-        return lessons;
+
     }
 
     @Override
