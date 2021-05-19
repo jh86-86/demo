@@ -22,7 +22,7 @@ public class LessonDataAccessService implements LessonDao {
 
     @Override
     public int insertLesson(UUID id, Lesson lesson) {
-        final String sql ="INSERT INTO lesson (id , name, youtubelink, tagline) VALUES (?, ?, ?, ?)";
+        final String sql ="INSERT INTO lesson (id , name, youtubeLink, tagline) VALUES (?, ?, ?, ?)";
 
         return jdbcTemplate.update(
                 sql,
@@ -35,11 +35,11 @@ public class LessonDataAccessService implements LessonDao {
 
     @Override
     public List<Lesson> selectAllLessons() {
-        final String sql = "SELECT id, name, youtubelink, tagline FROM Lesson";
+        final String sql = "SELECT id, name, youtubeLink, tagline FROM Lesson";
         List<Lesson> lessons= jdbcTemplate.query(sql, (resultSet, i) -> {  //Rowmapper lambda has access to result set and index
             UUID id = UUID.fromString(resultSet.getString("id")); //this will convert the string here to UUID
             String name = resultSet.getString("name");
-            String youtubeLink = resultSet.getString("youtubelink");
+            String youtubeLink = resultSet.getString("youtubeLink");
             String tagLine = resultSet.getString("tagline");
             return new Lesson(id, name, youtubeLink, tagLine);
         });
@@ -48,7 +48,7 @@ public class LessonDataAccessService implements LessonDao {
 
     @Override
     public Optional<Lesson> selectLessonById(UUID id) {
-        final String sql = "SELECT id, name, youtubelink, tagline FROM lesson WHERE id = ?";
+        final String sql = "SELECT id, name, youtubeLink, tagline FROM lesson WHERE id = ?";
 
 
         Lesson lesson= jdbcTemplate.queryForObject(
@@ -56,7 +56,7 @@ public class LessonDataAccessService implements LessonDao {
                 (resultSet, i) ->{
                     UUID lessonId = UUID.fromString(resultSet.getString("id"));
                     String name= resultSet.getString("name");
-                    String youtubeLink= resultSet.getString("youtubelink");
+                    String youtubeLink= resultSet.getString("youtubeLink");
                     String tagLine =resultSet.getString("tagline");
                     return new Lesson(lessonId, name, youtubeLink, tagLine);
                 }, id);
@@ -65,8 +65,11 @@ public class LessonDataAccessService implements LessonDao {
 
     @Override
     public int deleteLessonById(UUID id) {
-        return 0;
+        final String sql = "DELETE FROM lesson WHERE id = ?";
+        return jdbcTemplate.update(sql, id);
     }
+
+
 
     @Override
     public int updateLessonById(UUID id, Lesson lesson) {
