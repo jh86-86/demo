@@ -42,6 +42,7 @@
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
+
 		</dependency>
 
 		<!--for database migrations, allows us to manage database schema as we evolve-->
