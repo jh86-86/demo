@@ -1,6 +1,7 @@
 app:
   datasource:
-    jdbc-url: jdbc:postgresql://localhost:5432/demodb
-    username: postgres
-    password: password
+    jdbc-url: SPRING_DATASOURCE_URL
+    username: SPRING_DATASOURCE_USERNAME
+    password: SPRING_DATASOURCE_PASSWORD
     pool-size: 30
+
